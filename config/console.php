@@ -25,6 +25,11 @@ $config = [
             ],
         ],
         'db' => $db,
+        'queue'=>[
+            'class'=>\yii\queue\beanstalk\Queue::class,
+            'redis'=>'redis',
+            'channel'=>'queue'
+        ]
     ],
     'params' => $params,
     /*
