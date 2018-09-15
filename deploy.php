@@ -7,7 +7,7 @@ require 'recipe/yii2-app-basic.php';
 set('application', 'my_project');
 
 // Project repository
-set('repository', 'my110110');
+set('repository', 'git@github.com:my110110/yii2_test.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true); 
@@ -19,15 +19,17 @@ add('shared_dirs', []);
 // Writable dirs by web server 
 add('writable_dirs', []);
 
+set('keep_releases', 5);
 
+set('writable_use_sudo', false);
 // Hosts
 
-host('172.16.3.2')
+host('120.79.2.167')
     ->stage('debug')
     ->user('root')
     ->port(22)
-    ->set('branch', 'develop') // 一般是把 develop 分支弄到测试机测试，没问题再合并
-    ->set('deploy_path', '/data/wwwroot/xxx')
+    ->set('branch', 'master') // 一般是把 develop 分支弄到测试机测试，没问题再合并
+    ->set('deploy_path', '/var/www/html')
     ->identityFile('/home/vagrant/.ssh/id_rsa')
     ->forwardAgent(true)
     ->multiplexing(true)
@@ -36,6 +38,14 @@ host('172.16.3.2')
     ->addSshOption('StrictHostKeyChecking', 'no');
     
 // Tasks
+task('opcache_reset', function () {
+    run('{{bin/php}} -r \'opcache_reset();\'');
+});
+
+// 自定义任务：重启 php-fpm 服务
+task('php-fpm:restart', function () {
+    run('systemctl restart php-fpm.service');
+});
 
 task('build', function () {
     run('cd {{release_path}} && build');
