@@ -30,7 +30,7 @@ host('120.79.2.167')
     ->port(22)
     ->set('branch', 'master') // 一般是把 develop 分支弄到测试机测试，没问题再合并
     ->set('deploy_path', '/var/www/html')
-    ->identityFile('/home/vagrant/.ssh/id_rsa')
+    ->identityFile('~/.ssh/id_rsa')
     ->forwardAgent(true)
     ->multiplexing(true)
     ->set('http_user', 'www')
@@ -38,6 +38,10 @@ host('120.79.2.167')
     ->addSshOption('StrictHostKeyChecking', 'no');
     
 // Tasks
+task('install', function () {
+    run('composer install');
+});
+
 task('opcache_reset', function () {
     run('{{bin/php}} -r \'opcache_reset();\'');
 });
