@@ -29,11 +29,11 @@ host('120.79.2.167')
     ->user('root')
     ->port(22)
     ->set('branch', 'master') // 一般是把 develop 分支弄到测试机测试，没问题再合并
-    ->set('deploy_path', '/var/www/html')
+    ->set('deploy_path', '/var/www/html/yii2_test')
     ->identityFile('~/.ssh/id_rsa')
     ->forwardAgent(true)
     ->multiplexing(true)
-    ->set('http_user', 'www')
+    ->set('http_user', 'www/html')
     ->addSshOption('UserKnownHostsFile', '/dev/null')
     ->addSshOption('StrictHostKeyChecking', 'no');
     
