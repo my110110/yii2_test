@@ -293,6 +293,7 @@
                 "ezyang/htmlpurifier": "~4.6",
                 "lib-pcre": "*",
                  "yiisoft/yii2": "*",
+                  "yiisoft": "*",
                 "php": ">=5.4.0",
                 "yiisoft/yii2-composer": "~2.0.4"
             },
