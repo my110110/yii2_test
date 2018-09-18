@@ -25,7 +25,7 @@ set('writable_use_sudo', false);
 // Hosts
 
 host('120.79.2.167')
-    ->stage('debug')
+    ->stage('develop')
     ->user('root')
     ->port(22)
     ->set('branch', 'master') // 一般是把 develop 分支弄到测试机测试，没问题再合并
