@@ -15,9 +15,7 @@ require_once __DIR__ . '/common.php';
 
 // Yii 2 Basic Project Template shared dirs
 set('shared_dirs', ['runtime']);
-task('deploy:run_install', function () {
-    run('{{bin/php}} {{release_path}}/composer install');
-})->desc('Run install');
+
 /**
  * Run migrations
  */
@@ -35,7 +33,6 @@ task('deploy', [
     'deploy:release',
     'deploy:update_code',
     'deploy:shared',
-    'deploy:run_install',
     'deploy:vendors',
     'deploy:run_migrations',
     'deploy:symlink',
