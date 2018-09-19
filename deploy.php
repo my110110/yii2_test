@@ -14,10 +14,10 @@ set('git_tty', true);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
-add('shared_dirs', []);
+set('shared_dirs', ['runtime', 'web/uploads', 'config/ping']);
 
-// Writable dirs by web server 
-add('writable_dirs', ['runtime', 'web/uploads', 'web/assets']);
+// Writable dirs by web server
+set('writable_dirs', ['runtime', 'web/uploads', 'web/assets']);
 
 
 // Hosts
