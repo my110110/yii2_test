@@ -48,7 +48,6 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 set('composer_options', 'install --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction');
-set('bin/composer','{{release_path}}/composer.phar');
 task('deploy:run_migrations', function () {
     run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
 })->desc('Run migrations');
