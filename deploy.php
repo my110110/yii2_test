@@ -47,7 +47,24 @@ host('120.79.2.167')
 task('build', function () {
     run('cd {{release_path}} && build');
 });
-
+set('composer_options', 'install --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction');
+set('bin/composer','{{release_path}}/composer.phar');
+task('deploy:run_migrations', function () {
+    run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
+})->desc('Run migrations');
+task('deploy', [
+    'deploy:prepare',
+    'deploy:release',
+    'deploy:update_code',
+    'deploy:shared',
+    'deploy:writable',
+    'deploy:vendors',
+    'deploy:run_migrations',
+    'deploy:symlink',
+    'deploy:clear_cache',
+    'cleanup',
+    'success',
+])->desc('Deploy your project');
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
