@@ -17,7 +17,7 @@ add('shared_files', []);
 add('shared_dirs', []);
 
 // Writable dirs by web server 
-set('writable_dirs', ['runtime', 'web/uploads', 'web/assets']);
+set('writable_dirs', [ 'web/uploads', 'web/assets']);
 
 
 // Hosts
