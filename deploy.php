@@ -43,6 +43,7 @@ host('120.79.2.167')
     ->addSshOption('StrictHostKeyChecking', 'no');
     
 // Tasks
+set('writable_chmod_mode', '0777');
 
 task('build', function () {
     run('cd {{release_path}} && build');
