@@ -61,7 +61,6 @@ task('deploy', [
     'deploy:vendors',
     'deploy:run_migrations',
     'deploy:symlink',
-    'deploy:clear_cache',
     'cleanup',
     'success',
 ])->desc('Deploy your project');
