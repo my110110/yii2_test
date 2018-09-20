@@ -48,6 +48,9 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 set('composer_options', 'install --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction');
+task('deploy:copyenv', function () {
+    run(' {{release_path}} cp .env.dist .env');
+})->desc('Run migrations');
 task('deploy:run_migrations', function () {
     run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
 })->desc('Run migrations');
