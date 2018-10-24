@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 use yii\web\Controller;
-
+use app\models\TestUser;
 
 class EsController extends Controller
 {
