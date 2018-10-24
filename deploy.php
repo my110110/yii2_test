@@ -57,6 +57,9 @@ task('deploy:chomdweb', function () {
 task('deploy:run_migrations', function () {
     run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
 })->desc('Run migrations');
+task('deploy:clear_cache', function () {
+    run("{{bin/php}} {{release_path}}/yii cache/flush-all");
+})->desc("clear cache");
 task('deploy', [
     'deploy:prepare',
     'deploy:release',
@@ -68,6 +71,7 @@ task('deploy', [
     'deploy:run_migrations',
     'deploy:symlink',
     'deploy:chomdweb',
+    'deploy:clear_cache',
     'cleanup',
     'success',
 ])->desc('Deploy your project');
