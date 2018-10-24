@@ -52,7 +52,7 @@ task('deploy:copyenv', function () {
     run('cd {{release_path}}&& cp .env.dist .env');
 })->desc('Run copyenv');
 task('deploy:chomdweb', function () {
-    run('cd {{deploy_path}}/current/&& chmod -R 777 *');
+    run('cd {{deploy_path}}/current/web&& chmod -R 777 *');
 })->desc('Run chomdweb');
 task('deploy:run_migrations', function () {
     run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
