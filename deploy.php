@@ -65,9 +65,9 @@ task('deploy', [
     'deploy:writable',
     'deploy:vendors',
     'deploy:copyenv',
-    'deploy:chomdweb',
     'deploy:run_migrations',
     'deploy:symlink',
+    'deploy:chomdweb',
     'cleanup',
     'success',
 ])->desc('Deploy your project');
