@@ -12,7 +12,7 @@ use yii;
 use yii\web\Controller;
 use app\models\TestUser;
 
-class TestController extends Controller
+class UserTestController extends Controller
 {
     public  function actionIndex(){
         $user = New TestUser();
