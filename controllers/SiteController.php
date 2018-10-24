@@ -125,4 +125,12 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
+
+
+    public function actionEs(){
+        echo 123;die;
+
+    }
 }
