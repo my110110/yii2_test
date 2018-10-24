@@ -51,9 +51,9 @@ set('composer_options', 'install --verbose --prefer-dist --optimize-autoloader -
 task('deploy:copyenv', function () {
     run('cd {{release_path}}&& cp .env.dist .env');
 })->desc('Run copyenv');
-task('deploy:chomd', function () {
+task('deploy:chomdweb', function () {
     run('cd {{deploy_path}}/current/&& chmod -R 777 *');
-})->desc('Run chomd');
+})->desc('Run chomdweb');
 task('deploy:run_migrations', function () {
     run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
 })->desc('Run migrations');
@@ -65,6 +65,7 @@ task('deploy', [
     'deploy:writable',
     'deploy:vendors',
     'deploy:copyenv',
+    'deploy:chomdweb',
     'deploy:run_migrations',
     'deploy:symlink',
     'cleanup',
