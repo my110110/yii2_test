@@ -15,6 +15,9 @@ use yii\elasticsearch\ActiveRecord;
  */
 class TestUser extends ActiveRecord
 {
+    public function attributes(){
+        return ['id', 'name', 'sex', 'age'];
+    }
     /**
      * {@inheritdoc}
      */
