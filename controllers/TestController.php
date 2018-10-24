@@ -14,6 +14,7 @@ use app\models\TestUser;
 class TestController extends Controller
 {
     public  function actionIndex(){
+        echo 123;die;
         $user = New TestUser();
         $user->name = '大家好';
         $user->sex = '1';
