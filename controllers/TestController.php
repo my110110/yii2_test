@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: mayn
  * Date: 2018/10/24
- * Time: 14:02
+ * Time: 14:14
  */
-
 namespace app\controllers;
 
 use yii;
@@ -20,11 +19,10 @@ class TestController extends Controller
         $user->sex = '1';
         $user->age = '12';
         $user->save();
-        echo  123;
     }
 
     public function actionShow(){
-         $user = TestUser::find()->all();
-         var_dump($user);
+        $user = TestUser::find()->all();
+        var_dump($user);
     }
 }
