@@ -28,4 +28,14 @@ class UserTestController extends Controller
          $user = TestUser::find()->all();
          var_dump($user);
     }
+
+    public function actionDo(){
+        Yii::$app->queue->delay(1*60)->push(new \app\Jobs\OrderPingJob(
+            [
+                'id'=>100,
+                'userid'=>'你好'
+            ]
+            )
+        );
+    }
 }

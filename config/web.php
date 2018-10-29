@@ -16,6 +16,12 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '062dBRaewTU9Yf_yoCACkq9gK1o3k3xe',
         ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => '127.0.0.1',
+            'port' => 6379,
+            'database' => 0,
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -41,6 +47,12 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'queue' => [
+            'class' => \yii\queue\redis\Queue::class,
+            'as log' => \yii\queue\LogBehavior::class,
+            'redis' => 'redis', // Redis connection component or its config
+            'channel' => 'queue', // Queue channel key
         ],
         'db' => $db,
         'elasticsearch' => [

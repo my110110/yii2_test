@@ -24,6 +24,18 @@ $config = [
                 ],
             ],
         ],
+       'redis'=>[
+           'class'=>'yii\redis\Connection',
+           'hostname'=>'127.0.0.1',
+           'port'=>6379,
+           'database'=>0,
+       ],
+        'queue'=>[
+            'class'=>yii\queue\redis\Queue::class,
+            'redis'=>'redis',
+            'as log' => \yii\queue\LogBehavior::class,
+            'channel'=>'queue'
+        ],
         'db' => $db,
     ],
     'params' => $params,
