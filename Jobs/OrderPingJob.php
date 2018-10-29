@@ -8,7 +8,7 @@
 namespace app\Jobs;
 use Yii;
 use yii\base\BaseObject;
-use app\models\TestUser;
+use app\models\UserTest;
 
 class OrderPingJob extends BaseObject implements \yii\queue\JobInterface
 {
@@ -18,11 +18,10 @@ class OrderPingJob extends BaseObject implements \yii\queue\JobInterface
     {
         $id = $this->id;
         $user = $this->userid;
-        $model = new TestUser();
-        $model->primaryKey = $id;
+        $model = new UserTest();
         $model->name = $user;
         $model->sex = '1';
-        $model->age = 20;
+        $model->age = $id;
         $model->save();
 
     }

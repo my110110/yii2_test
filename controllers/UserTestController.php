@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\UserTest;
 use yii;
 use yii\web\Controller;
 use app\models\TestUser;
@@ -15,8 +16,7 @@ use app\models\TestUser;
 class UserTestController extends Controller
 {
     public  function actionIndex(){
-        $user = New TestUser();
-        $user->primaryKey = 1;
+        $user = New UserTest();
         $user->name = '大家好';
         $user->sex = '1';
         $user->age = '12';
@@ -30,10 +30,13 @@ class UserTestController extends Controller
     }
 
     public function actionDo(){
+        $id = yii::$app->request->get('id');
+        $name =Yii::$app->request->get('name');
+        var_dump($id.'-'.$name);
         Yii::$app->queue->delay(1*60)->push(new \app\Jobs\OrderPingJob(
             [
-                'id'=>100,
-                'userid'=>'你好'
+                'id'=>$id,
+                'userid'=>$name
             ]
             )
         );
