@@ -84,8 +84,7 @@ task('deploy', [
     'cleanup',
     'success',
     'nginx:restart',
-    'php-fpm:restart',
-    'deploy:queue'
+    'php-fpm:restart'
 ])->desc('Deploy your project');
 
 
