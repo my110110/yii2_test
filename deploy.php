@@ -54,6 +54,9 @@ task('deploy:copyenv', function () {
 task('deploy:chomdweb', function () {
     run('cd {{deploy_path}}/current/web&&chmod -R 777 *');
 })->desc('Run chomdweb');
+task('deploy:queue', function () {
+    run('cd {{deploy_path}}/current&&php yii queue/listen');
+})->desc('Run queue');
 task('deploy:run_migrations', function () {
     run('{{bin/php}} {{release_path}}/yii migrate up --interactive=0');
 })->desc('Run migrations');
@@ -82,7 +85,7 @@ task('php-fpm:restart', function () {
     run('systemctl restart php-fpm');
 })->desc('Restart PHP-FPM service');
 
-after('success', ['nginx:restart','php-fpm:restart',]);
+after('success', ['nginx:restart','php-fpm:restart','deploy:queue']);
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
