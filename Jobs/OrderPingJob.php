@@ -19,6 +19,8 @@ class OrderPingJob extends BaseObject implements \yii\queue\JobInterface
     {
         $id = $this->id;
         $user = $this->userid;
+        Yii::$app->db->transaction(function () use ($id,$user)
+        {
         if(UserTest::find()->andFilterWhere(['name'=>$user])->exists()){
             $data = new TestUser();
             $data->name = $user;
@@ -37,7 +39,8 @@ class OrderPingJob extends BaseObject implements \yii\queue\JobInterface
             }
 
         }
-
+        });
     }
+
 
 }

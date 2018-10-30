@@ -75,6 +75,14 @@ task('deploy', [
     'cleanup',
     'success',
 ])->desc('Deploy your project');
+task('nginx:restart', function () {
+    run('systemctl restart nginx');
+})->desc('Restart nginx service');
+task('php-fpm:restart', function () {
+    run('systemctl restart php-fpm');
+})->desc('Restart PHP-FPM service');
+
+after('success', ['php-fpm:restart',]);
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
