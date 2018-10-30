@@ -25,15 +25,17 @@ class OrderPingJob extends BaseObject implements \yii\queue\JobInterface
             $data->age = $id;
             $data->sex = 20;
             $data->save();
-         }
-        $model = new UserTest();
-        $model->name = $user;
-        $model->type = $id;
-        $model->save();
-        if($model->save()){
-            return '成功';
         }else{
-            return $model->getErrors();
+            $model = new UserTest();
+            $model->name = $user;
+            $model->type = $id;
+            $model->save();
+            if($model->save()){
+                return '成功';
+            }else{
+                return $model->getErrors();
+            }
+
         }
 
     }
