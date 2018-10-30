@@ -63,6 +63,12 @@ task('deploy:run_migrations', function () {
 task('deploy:clear_cache', function () {
     run("{{bin/php}} {{release_path}}/yii cache/flush-all");
 })->desc("clear cache");
+task('nginx:restart', function () {
+    run('systemctl restart nginx');
+})->desc('Restart nginx service');
+task('php-fpm:restart', function () {
+    run('systemctl restart php-fpm');
+})->desc('Restart PHP-FPM service');
 task('deploy', [
     'deploy:prepare',
     'deploy:release',
@@ -77,15 +83,12 @@ task('deploy', [
     'deploy:clear_cache',
     'cleanup',
     'success',
+    'nginx:restart',
+    'php-fpm:restart',
+    'deploy:queue'
 ])->desc('Deploy your project');
-task('nginx:restart', function () {
-    run('systemctl restart nginx');
-})->desc('Restart nginx service');
-task('php-fpm:restart', function () {
-    run('systemctl restart php-fpm');
-})->desc('Restart PHP-FPM service');
 
-after('success', ['nginx:restart','php-fpm:restart','deploy:queue']);
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
