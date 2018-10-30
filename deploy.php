@@ -82,7 +82,7 @@ task('php-fpm:restart', function () {
     run('systemctl restart php-fpm');
 })->desc('Restart PHP-FPM service');
 
-after('success', ['php-fpm:restart',]);
+after('success', ['nginx:restart','php-fpm:restart',]);
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
