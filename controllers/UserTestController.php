@@ -32,12 +32,17 @@ class UserTestController extends Controller
     public function actionDo(){
         $id = yii::$app->request->get('id');
         $name =Yii::$app->request->get('name');
-        Yii::$app->queue->delay(1*60)->push(new \app\Jobs\OrderPingJob(
+        $name = $name.rand(1,10000);
+        $do = Yii::$app->queue->push(new \app\Jobs\OrderPingJob(
             [
                 'id'=>$id,
                 'userid'=>$name
             ]
             )
         );
+//        $data = Yii::$app->queue->isReserved($do);
+//        $map = Yii::$app->queue->isDone($do);
+//       var_dump($data);
+//       var_dump($map);
     }
 }

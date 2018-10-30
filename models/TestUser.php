@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use yii\elasticsearch\ActiveRecord;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "test_user".
