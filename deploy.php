@@ -29,7 +29,7 @@ set('keep_releases', 5);
 set('writable_use_sudo', false);
 
 // 生产用的主机
-host('120.79.2.167')
+host('47.104.213.83')
     ->stage('dev')
     ->user('root')
     ->port(22)
