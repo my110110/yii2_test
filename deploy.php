@@ -72,7 +72,6 @@ task('php-fpm:restart', function () {
 task('deploy', [
     'deploy:prepare',
     'deploy:release',
-    'deploy:update_code',
     'deploy:shared',
     'deploy:writable',
     'deploy:vendors',
