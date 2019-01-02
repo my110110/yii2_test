@@ -38,7 +38,7 @@ host('47.104.213.83')
     ->identityFile('~/.ssh/id_rsa')
     ->forwardAgent(true)
     ->multiplexing(true)
-    ->set('http_user', 'www') // 这个与 nginx 里的配置一致
+    ->set('http_user', 'www'); // 这个与 nginx 里的配置一致
 //    ->addSshOption('UserKnownHostsFile', '/dev/null')
 //    ->addSshOption('StrictHostKeyChecking', 'no');
     
