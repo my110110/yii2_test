@@ -39,8 +39,8 @@ host('47.104.213.83')
     ->forwardAgent(true)
     ->multiplexing(true)
     ->set('http_user', 'www') // 这个与 nginx 里的配置一致
-    ->addSshOption('UserKnownHostsFile', '/dev/null')
-    ->addSshOption('StrictHostKeyChecking', 'no');
+//    ->addSshOption('UserKnownHostsFile', '/dev/null')
+//    ->addSshOption('StrictHostKeyChecking', 'no');
     
 // Tasks
 
@@ -72,6 +72,7 @@ task('php-fpm:restart', function () {
 task('deploy', [
     'deploy:prepare',
     'deploy:release',
+    'deploy:update_code',
     'deploy:shared',
     'deploy:writable',
     'deploy:vendors',
