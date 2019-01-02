@@ -40,9 +40,36 @@ class UserTestController extends Controller
             ]
             )
         );
-//        $data = Yii::$app->queue->isReserved($do);
-//        $map = Yii::$app->queue->isDone($do);
-//       var_dump($data);
-//       var_dump($map);
+
+    }
+
+    public function actionTest(){
+//        $model = new UserTest();
+//        $model->name = 'adte';
+//        $model->type =1;
+//        $model->save();
+        UserTest::updateAll(['name'=>'adte'],['type'=>1]);
+    }
+
+
+
+    public function actionRedisTest(){
+        Yii::$app->redis->lpush('test',1);
+        $num = Yii::$app->redis->llen('test');
+
+        var_dump($num);
+
+
+    }
+    public function actionRedisAdd(){
+       Yii::$app->redis->rpop('test');
+      // var_dump($a);
+        $num = Yii::$app->redis->llen('test');
+         var_dump($num);
+    }
+    public function actionRedisDel(){
+        Yii::$app->redis->lrem('test',3,1);
+        $num = Yii::$app->redis->llen('test');
+        var_dump($num);
     }
 }
