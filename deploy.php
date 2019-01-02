@@ -7,7 +7,7 @@ require 'recipe/yii2-app-basic.php';
 set('application', 'my_project');
 
 // Project repository
-set('repository', 'git@github.com:my110110/yii2_test.git');
+set('repository', 'git@git.dev.tencent.com:zyh110110/yii2test.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true); 
